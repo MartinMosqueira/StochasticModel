@@ -17,4 +17,3 @@ class GameBoard:
         self.screen.fill(self.backgroundColor)
 
         conduct.draw_box(self.screen)
-        pygame.display.update()
