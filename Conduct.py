@@ -1,10 +1,11 @@
 import pygame
 
+
 class Conduct:
     def __init__(self):
         self.width = 200
         self.height = 300
-        self.radius = 200
+        self.radius = 100
         self.color = (80, 80, 80)
 
     def draw_box(self, screen):
@@ -19,16 +20,17 @@ class Conduct:
     
     def get_collision_box(self, particle, screenWidth, screenHeight):
         x, y = particle.get_position()
+        tolerance = 10
         
         # Calculating box coordinates
-        box_x_min = (screenWidth - self.width) // 2
-        box_x_max = box_x_min + self.width
-        box_y_min = (screenHeight - self.height) // 2
-        box_y_max = box_y_min + self.height
+        box_x_min = ((screenWidth - self.width) // 2)+tolerance
+        box_x_max = (box_x_min + self.width)-tolerance
+        box_y_min = ((screenHeight - self.height) // 2)+tolerance
+        box_y_max = (box_y_min + self.height)-tolerance
         
         # Check collision with the box
         if box_x_min < x < box_x_max and box_y_min < y < box_y_max:
-            return False    
+            return False  
         return True
     
     def get_collision_circle(self, particle, screenWidth, screenHeight):

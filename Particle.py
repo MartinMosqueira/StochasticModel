@@ -1,4 +1,5 @@
 import pygame
+import math
 
 
 class Particle:
@@ -16,4 +17,14 @@ class Particle:
 
     def get_position(self):
         return self.x, self.y
-        
+    
+    def get_colision_particle(self, particlesColided):
+        for p in particlesColided:
+            if self._check_collision(p):
+                return True
+        return False
+
+    def _check_collision(self, other):
+        # Calculate distance between particles
+        distance = math.sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2)
+        return distance < (self.size + other.size)
